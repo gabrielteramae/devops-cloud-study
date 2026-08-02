@@ -47,7 +47,7 @@ Este repositório documenta minha trilha de estudo em DevOps e Cloud Computing, 
 ## Roadmap
 
 ### 01 - Fundamentos
-- [x] Linux
+- [ ] Linux
 - [ ] Git
 - [ ] Bash
 
