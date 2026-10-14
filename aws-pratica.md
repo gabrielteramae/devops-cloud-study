@@ -17,26 +17,16 @@ aws sts get-caller-identity   # confirma qual identidade está autenticada
 
 ## Lab 1 — IAM: criar usuário com permissões limitadas
 
+O JSON deste lab está em `labs/aws/policy-s3-readonly.json`. Ele libera leitura em qualquer bucket. Para um lab de verdade, prefira `labs/aws/policy-s3-lab-prefix.json`, que só alcança buckets `lab-devops-*`.
+
 ```bash
+cd labs/aws
+
 aws iam create-user --user-name lab-devops
 
 aws iam create-policy \
   --policy-name LabS3ReadOnly \
-  --policy-document file://policy-s3-readonly.json
-```
-
-`policy-s3-readonly.json`:
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": ["s3:GetObject", "s3:ListBucket"],
-      "Resource": "*"
-    }
-  ]
-}
+  --policy-document file://policy-s3-lab-prefix.json
 ```
 
 ```bash
@@ -95,10 +85,14 @@ aws ec2 terminate-instances --instance-ids i-XXXXXXXXXXXX
 
 ## Lab 4 — Billing alert (proteção contra custo inesperado)
 
-Pelo console AWS (não tem CLI simples pra isso):
-1. Vá em **Billing → Budgets**
-2. Crie um budget mensal (ex: US$5)
-3. Configure alerta por e-mail ao atingir 80% do valor
+O `labs/terraform` cria o budget se você passar o e-mail. Sem isso, nada de billing é criado.
+
+```bash
+cd labs/terraform
+terraform apply -var="alerta_email=voce@exemplo.com"
+```
+
+Isso abre um budget mensal de US$ 5 e avisa em 80%. A API de budget responde em `us-east-1`. O console (Billing → Budgets) mostra o mesmo recurso.
 
 ## Checklist de conclusão
 - [ ] Criei um usuário IAM com política restrita (não usei root)

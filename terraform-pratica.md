@@ -8,7 +8,16 @@
 
 ## Lab 1 — Primeiro recurso (S3 bucket)
 
-Crie uma pasta `lab-terraform` com `main.tf`:
+Os arquivos já estão em `labs/terraform`. O bucket bloqueia acesso público, cifra com AES256 e aceita `terraform destroy` mesmo com objeto dentro (`force_destroy`).
+
+```bash
+cd labs/terraform
+terraform init
+terraform plan
+terraform apply
+```
+
+O `main.tf` do lab, sem o bloqueio público e a cifra que o repositório acrescenta:
 
 ```hcl
 terraform {
@@ -37,18 +46,13 @@ output "nome_bucket" {
 }
 ```
 
-```bash
-cd lab-terraform
-terraform init
-terraform plan
-terraform apply    # confirme digitando "yes"
-```
+O bloco acima é o mínimo do lab. No repositório, `labs/terraform` já inclui variável, tag, módulo, bloqueio público e cifra. Use os comandos do começo desta seção, não uma pasta `lab-terraform`.
 
 ---
 
 ## Lab 2 — Variáveis
 
-Crie `variables.tf`:
+`labs/terraform/variables.tf` já tem `ambiente` (padrão `dev`) e `alerta_email`. O mínimo do lab:
 
 ```hcl
 variable "ambiente" {
@@ -88,7 +92,7 @@ terraform plan
 
 ## Lab 4 — Módulo simples
 
-Crie `modules/bucket-lab/main.tf`:
+O módulo já está em `labs/terraform/modules/bucket-lab` e o `main.tf` chama `bucket_extra`. O mínimo do lab:
 
 ```hcl
 variable "nome_bucket" {

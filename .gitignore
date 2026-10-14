@@ -1,3 +1,8 @@
 .DS_Store
 Thumbs.db
 *.swp
+
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log

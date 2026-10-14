@@ -20,7 +20,7 @@
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat&logo=nginx&logoColor=white)
 ![Vault](https://img.shields.io/badge/Vault-FFEC6E?style=flat&logo=vault&logoColor=black)
 
-Notas de estudo em Markdown. Cada assunto tem um arquivo de teoria e um de laboratório, todos na raiz. Não há aplicação, Docker Compose nem cluster neste repositório: os labs são comandos para rodar na sua máquina.
+Notas de estudo em Markdown. Cada assunto tem um arquivo de teoria e um de laboratório, todos na raiz. Não há aplicação, Docker Compose nem cluster neste repositório. AWS e Terraform têm arquivos em `labs/` para não copiar o exemplo à mão. Os outros labs continuam sendo comandos para rodar na sua máquina.
 
 ## Stack
 
@@ -61,6 +61,15 @@ Não existem as pastas `01-fundamentos/`, `pratica/` nem `teoria.md` solto. O pa
 | Vault | `vault-teoria.md` | `vault-pratica.md` |
 
 `linux-teoria.md` explica o que a ferramenta é, conceitos (filesystem, permissão, processo, rede, pacote, log) e referências. `docker-pratica.md` tem objetivo, pré-requisito, labs numerados com comando, checklist e uma seção de troubleshooting para preencher.
+
+## Labs com arquivo
+
+| Lab | Onde | O que sobe |
+| --- | --- | --- |
+| AWS, política IAM | `labs/aws/` | Nada sozinho. O JSON entra no `aws iam create-policy` do `aws-pratica.md` |
+| Terraform, S3 e budget | `labs/terraform/` | Dois buckets privados em `sa-east-1`, se você rodar `terraform apply`. O budget de US$ 5 só nasce se `alerta_email` vier preenchido |
+
+O workflow `.github/workflows/terraform.yml` roda `terraform fmt`, `init` e `validate`. Não faz `apply` e não usa credencial.
 
 ## Como ler
 
